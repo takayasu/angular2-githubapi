@@ -1,0 +1,66 @@
+
+<div class="alert alert-warning" role="alert" *ngIf="errMsg">{{ errMsg }}</div>
+
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <form class="well">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="ユーザ名を入力してください..." [(ngModel)]="username"
+                 name="username" (keyup)="searchUser()">
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="panel panel-default" *ngIf="user">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{ user.name }}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-4">
+          <img class="img-thumbnail" src="{{ user.avatar_url }}">
+          <a class="btn btn-default btn-block" href="{{user.html_url}}" target="_blank">プロファイル</a>
+        </div>
+        <div class="col-md-8">
+          <div class="stats">
+            <span class="label label-default">{{ user.public_repos }} 公開リポジトリ </span>
+            <span class="label label-primary">{{ user.public_gists}} 公開Gists </span>
+            <span class="label label-success">{{ user.followers }} フォロー </span>
+            <span class="label label-info">{{ user.following }} フォロワー</span>
+          </div>
+          <br />
+          <ul class="list-group">
+            <li class="list-group-item"><strong>ユーザ名：</strong>{{user.login}}</li>
+            <li class="list-group-item"><strong>ロケーション：</strong>{{user.location}}</li>
+            <li class="list-group-item"><strong>ブログ：</strong><a href="{{user.blog}}" target="_blank"> {{user.blog}}</a></li>
+            <li class="list-group-item"><strong>参加日：</strong>{{user.created_at |date}}</li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">User Repos</h3>
+      </div>
+      <div class="panel-body">
+        <div *ngFor="let repo of repos" >
+          <div class="row">
+            <div class="col-md-9">
+              <a href="{{repo.html_url}}" target="_blank" ><h4>{{repo.name}}</h4></a>
+              <p>{{repo.description}}</p>
+            </div>
+            <div class="col-md-3"></div>
+            <span class="label label-default">{{ repo.watchers }} ウォッチ数 </span>
+            <span class="label label-primary">{{ repo.forks }} フォーク数 </span>
+          </div>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
