@@ -1,10 +1,18 @@
 import { NgModule } from '@angular/core';
+
 import { Routes, RouterModule } from '@angular/router';
+
+import { ProfileComponent } from './profile/profile.component';
+import { KeywordComponent } from './keyword/keyword.component';
 
 const routes: Routes = [
   {
     path: '',
-    children: []
+    component: ProfileComponent
+  },
+  {
+    path: 'keyword',
+    component: KeywordComponent
   }
 ];
 
